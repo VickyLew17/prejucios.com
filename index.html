@@ -8,7 +8,12 @@
 </head>
 <body>
     <h1>Prejuicios.com</h1>
-    <h3>más allá del esteriotipo</h3>
+    <h3>Más allá del estereotipo</h3>
+    <h3>Un cuestionario sobre prejuicios y percepciones</h3>
+
+    <div class="progreso">
+        <div class="barra"></div>
+    </div>
 
     <div class="pregunta">
         <p>¿Pensás que la economía global está manejada en las sombras por un grupo reducido de familias poderosas? 
@@ -26,7 +31,7 @@
     </div>
 
     <div class="pregunta">
-        <p>¿Creés que los grandes medios de comunicación internacionales responden a los intereses de un solo grupo identitario? 
+        <p>¿Pensás que en la cultura judía hay una tendencia real a darle más importancia al dinero y a los negocios que en el resto de las culturas? 
         </p>
 
         <label>
@@ -57,7 +62,7 @@
     
     <div class="pregunta">
         <p>¿Creés que hoy en día se exagera o se usa políticamente el recuerdo del Holocausto en el cine y los libros? 
-x        </p>
+      </p>
 
         <label>
             <input type="radio" name="p4" value="1">
@@ -71,7 +76,7 @@ x        </p>
     </div>  
     
     <div class="pregunta">
-        <p>¿Pensás que los prejuicios históricos que sufrió el pueblo judío a lo largo de los siglos se debieron, en parte, a su propia forma de actuar? 
+        <p>¿Te hace ruido o te cae mal que, por sus tradiciones milenarias, se definan históricamente a sí mismos como "el pueblo elegido"? 
         </p>
 
         <label>
@@ -102,7 +107,7 @@ x        </p>
     </div>
 
     <div class="pregunta">
-        <p>¿Te parecería mal o te generaría rechazo que un familiar directo tuyo se casara con alguien de fe o herencia judía? 
+        <p> Más allá de si sos creyente o no, ¿creés que el pueblo judío actual sigue teniendo alguna responsabilidad histórica por la crucifixión de Jesús? 
         </p>
 
         <label>
@@ -132,7 +137,7 @@ x        </p>
     </div>  
     
     <div class="pregunta">
-        <p>Pensás que las comunidades judías en la diáspora (fuera de Israel) actúan siempre de manera secreta para ayudarse solo entre ellos en los negocios? 
+        <p>¿Considerás que es verdad el mito de que la comunidad judía tiene demasiado poder oculto sobre las decisiones del gobierno de Estados Unidos? 
         </p>
 
         <label>
@@ -164,6 +169,191 @@ x        </p>
     <button onclick="calcularResultado()">
         Ver resultado
     </button>
+
+    <div id="resultado"></div>
+
+    
+
+<script>
+function calcularResultado() {
+
+    let respuestas = [];
+    let puntaje = 0;
+
+    // Obtener respuestas
+    for (let i = 1; i <= 10; i++) {
+        const respuesta = document.querySelector(`input[name="p${i}"]:checked`);
+
+        if (!respuesta) {
+            alert("Por favor respondé todas las preguntas.");
+            return;
+        }
+
+        respuestas[i] = respuesta.value;
+
+        if (respuesta.value === "1") {
+            puntaje++;
+        }
+    }
+
+    let texto = "<h2>Resultado</h2>";
+
+    
+    if (puntaje <= 2) {
+        texto += `
+            <p>
+            Tus respuestas muestran pocas coincidencias con los prejuicios
+            analizados en este cuestionario.
+            </p>
+        `;
+    }
+    else if (puntaje <= 5) {
+        texto += `
+            <p>
+            Algunas de tus respuestas coinciden con ideas o estereotipos
+            que históricamente estuvieron vinculados a prejuicios sobre
+            la comunidad judía.
+            </p>
+        `;
+    }
+    else {
+        texto += `
+            <p>
+            Varias de tus respuestas coinciden con prejuicios o teorías
+            conspirativas que históricamente se utilizaron para justificar
+            discriminación hacia las personas judías.
+            </p>
+        `;
+    }
+
+    texto += `
+        <p><strong>Puntaje: ${puntaje}/10</strong></p>
+        <hr>
+        <h2>Análisis de respuestas</h2>
+    `;
+
+
+
+    if (respuestas[1] === "1") {
+        texto += `
+            <h3>Economía global y grupos secretos</h3>
+            <p>
+            La idea de que un grupo reducido controla secretamente la economía
+            mundial es una teoría conspirativa que históricamente se asoció
+            injustamente con los judíos.
+            </p>
+        `;
+    }
+
+    if (respuestas[2] === "1") {
+        texto += `
+            <h3>Dinero y negocios</h3>
+            <p>
+            Asociar a toda una comunidad con el dinero o los negocios es un
+            estereotipo antiguo que simplifica y distorsiona la realidad.
+            </p>
+        `;
+    }
+
+    if (respuestas[3] === "1") {
+        texto += `
+            <h3>Hollywood y la influencia cultural</h3>
+            <p>
+            La idea de un supuesto control cultural por parte de una comunidad
+            suele surgir de generalizaciones y no refleja la diversidad real
+            de quienes participan en la industria.
+            </p>
+        `;
+    }
+
+    if (respuestas[4] === "1") {
+        texto += `
+            <h3>Memoria del Holocausto</h3>
+            <p>
+            El recuerdo del Holocausto cumple una función educativa e histórica.
+            Su estudio busca comprender cómo pueden surgir procesos de odio y
+            persecución.
+            </p>
+        `;
+    }
+
+    if (respuestas[5] === "1") {
+        texto += `
+            <h3>"Pueblo elegido"</h3>
+            <p>
+            En la tradición judía, esta expresión tiene un significado religioso
+            relacionado con responsabilidades espirituales y no con una idea de
+            superioridad sobre otros pueblos.
+            </p>
+        `;
+    }
+
+    if (respuestas[6] === "1") {
+        texto += `
+            <h3>Doble lealtad</h3>
+            <p>
+            La idea de que una persona judía es menos leal a su país por su
+            origen es un prejuicio histórico conocido como el mito de la
+            doble lealtad.
+            </p>
+        `;
+    }
+
+    if (respuestas[7] === "1") {
+        texto += `
+            <h3>Crucifixión de Jesús</h3>
+            <p>
+            La responsabilidad colectiva atribuida al pueblo judío por este
+            hecho fue una de las bases históricas del antisemitismo europeo.
+            Actualmente esa idea es rechazada por gran parte del mundo cristiano.
+            </p>
+        `;
+    }
+
+    if (respuestas[8] === "1") {
+        texto += `
+            <h3>Israel y las personas judías</h3>
+            <p>
+            Las decisiones de un gobierno no representan automáticamente a todas
+            las personas que comparten una identidad religiosa o cultural.
+            </p>
+        `;
+    }
+
+    if (respuestas[9] === "1") {
+        texto += `
+            <h3>Poder oculto en Estados Unidos</h3>
+            <p>
+            La idea de un control secreto de gobiernos por parte de los judíos
+            es una teoría conspirativa difundida históricamente sin evidencia
+            que la respalde.
+            </p>
+        `;
+    }
+
+    if (respuestas[10] === "1") {
+        texto += `
+            <h3>Humor y estereotipos</h3>
+            <p>
+            Los chistes pueden parecer inofensivos, pero a veces contribuyen
+            a normalizar prejuicios o a minimizar hechos históricos graves.
+            </p>
+        `;
+    }
+
+    
+    if (puntaje === 0) {
+        texto += `
+            <p>
+            No seleccionaste ninguna de las opciones asociadas a los prejuicios
+            analizados. ¡Gracias por completar el cuestionario!
+            </p>
+        `;
+    }
+
+    document.getElementById("resultado").innerHTML = texto;
+}
+</script>
 
 </body>
 </html>
